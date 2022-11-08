@@ -7,28 +7,19 @@ export class PlayerController extends Component {
     @property(Camera)
     public mainCamera : Camera | null = null;
 
-
-
     @property(Node)
     public body : Node | null = null;
 
     public _ray : geometry.Ray = new geometry.Ray();
 
     start() {
-        input.on(Input.EventType.MOUSE_DOWN,this.onMouseDown1,this);
     }
 
     update(deltaTime: number) {
         
     }
     onLoad(){
-        console.log(this.node);
-        console.log(this.body);
-        //input.on(Input.EventType.MOUSE_DOWN,this.mouseDown,this);
-        //this.node.on(Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
-        this.body.on(Node.EventType.MOUSE_DOWN,this.onMouseDown,this);
-    //this.node.on(Node.EventType.MOUSE_UP, this.onMouseUp, this);
-    //this.node.on(Node.EventType.MOUSE_WHEEL, this.onMouseWheel, this);
+        input.on(Input.EventType.MOUSE_DOWN,this.onMouseDown1,this);        //检测碰撞体
     }
     public onMouseDown1(event : EventMouse){
         //基于摄像机  画射线
@@ -60,9 +51,7 @@ export class PlayerController extends Component {
         
     }
     onDestroy () {
-        this.node.off(Node.EventType.MOUSE_DOWN, this.onMouseDown, this);
-        //this.node.off(Node.EventType.MOUSE_UP, this.onMouseUp, this);
-        //this.node.off(Node.EventType.MOUSE_WHEEL, this.onMouseWheel, this);
+        this.node.off(Node.EventType.MOUSE_DOWN, this.onMouseDown1, this);
     }
     onEnable(){
         
